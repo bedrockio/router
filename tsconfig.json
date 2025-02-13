@@ -1,0 +1,18 @@
+{
+  "include": [
+    "./src/index.js"
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "ESNext",
+    "allowJs": true,
+    "checkJs": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "outDir": "types",
+  },
+}
