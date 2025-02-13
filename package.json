@@ -15,7 +15,7 @@
   "exports": {
     ".": {
       "import": "./src/index.js",
-      "required": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.js"
     }
   },
   "contributors": [

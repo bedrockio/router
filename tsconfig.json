@@ -12,7 +12,7 @@
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "outDir": "types",
   },
 }
