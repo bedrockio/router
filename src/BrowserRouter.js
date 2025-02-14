@@ -30,6 +30,10 @@ export default function BrowserRouter(props) {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   const search = useMemo(() => {
     const params = new URLSearchParams(location.search);
     return Object.fromEntries(params);
