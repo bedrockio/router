@@ -1,6 +1,12 @@
-import { useMemo, Children } from 'react';
+import {
+  useMemo,
+  useContext,
+  cloneElement,
+  isValidElement,
+  Children,
+} from 'react';
+
 import { match } from 'path-to-regexp';
-import { useContext } from 'react';
 
 const OPTIONAL_REG = /\/:(\w+)\?/g;
 
@@ -66,7 +72,9 @@ export default function Routes(props) {
 
   return (
     <RouterContext.Provider value={{ ...parent, params, matcher }}>
-      {node}
+      {cloneElement(node, {
+        children: getElementForNode(node),
+      })}
     </RouterContext.Provider>
   );
 }
@@ -79,6 +87,7 @@ function matchRoute(routes, location) {
       return {
         node: route.node,
         params: match.params,
+        element: route.element,
         matcher: route.matcher,
       };
     }
@@ -92,4 +101,14 @@ function getSubdomainMatcher(subdomain) {
     }
     return hostname.split('.')[0] === subdomain;
   };
+}
+
+function getElementForNode(node) {
+  const { render } = node.props;
+  if (isValidElement(render)) {
+    return render;
+  } else if (render) {
+    const Component = render;
+    return <Component />;
+  }
 }

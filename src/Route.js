@@ -7,13 +7,6 @@
  * @param {RouteProps} props
  */
 export default function Route(props) {
-  let { render: node } = props;
-
-  if (typeof node === 'function') {
-    const Component = node;
-    // @ts-ignore
-    node = <Component />;
-  }
-
-  return node;
+  // @ts-ignore
+  return props.children;
 }

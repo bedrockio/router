@@ -16,4 +16,6 @@ export * from './location.js';
 export * from './navigate.js';
 export * from './params.js';
 export * from './search.js';
+
+// Utils
 export * from './hoc.js';

@@ -1,8 +1,10 @@
-function wrapFunction(name) {
-  if (typeof window === 'undefined') {
-    return;
-  }
+function wrapHistory(history) {
+  history = wrapFunction(history, 'pushState');
+  history = wrapFunction(history, 'replaceState');
+  return history;
+}
 
+function wrapFunction(history, name) {
   const native = history[name];
   const event = name.toLowerCase();
 
@@ -16,9 +18,8 @@ function wrapFunction(name) {
     );
     return ret;
   };
+
+  return history;
 }
 
-wrapFunction('pushState');
-wrapFunction('replaceState');
-
-export default history;
+export default wrapHistory(history);
