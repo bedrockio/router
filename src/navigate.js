@@ -1,4 +1,4 @@
-import history from './history';
+import history from './history.js';
 
 function navigate(path, state) {
   history.pushState(state, undefined, path);

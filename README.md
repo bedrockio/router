@@ -1,3 +1,3 @@
 # @bedrockio/router
 
-A router!
+A simpler browser router.

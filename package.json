@@ -1,23 +1,17 @@
 {
   "name": "@bedrockio/router",
   "version": "0.0.1",
-  "description": "Bedrock router.",
+  "description": "A simpler browser router.",
   "type": "module",
   "scripts": {
-    "test": "node --no-warnings node_modules/.bin/jest",
-    "types": "tsc",
+    "test": "jest",
+    "build": "tsc",
     "lint": "eslint",
-    "build": "scripts/build",
     "eject": "scripts/eject",
-    "prepublish": "yarn build && yarn types"
+    "prepublish": "yarn build"
   },
-  "types": "./types/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./src/index.js",
-      "require": "./dist/cjs/index.js"
-    }
-  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "contributors": [
     {
       "name": "Andrew Plummer",
@@ -37,9 +31,8 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.26.4",
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
+    "@babel/core": "^7.26.8",
+    "@babel/preset-env": "^7.26.8",
     "@babel/preset-react": "^7.26.3",
     "@bedrockio/eslint-plugin": "^1.1.7",
     "@bedrockio/prettier-config": "^1.0.2",

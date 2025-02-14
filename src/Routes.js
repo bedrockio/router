@@ -4,9 +4,16 @@ import { useContext } from 'react';
 
 const OPTIONAL_REG = /\/:(\w+)\?/g;
 
-import { useLocation } from './location';
-import { RouterContext } from './context';
+import { useLocation } from './location.js';
+import { RouterContext } from './context.js';
 
+/**
+ * A route to resolve a component based on location.
+ *
+ * @typedef {Object} RoutesProps
+ * @property {React.ReactElement} children
+ * @param {RoutesProps} props
+ */
 export default function Routes(props) {
   const { children } = props;
 

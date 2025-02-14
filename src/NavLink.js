@@ -1,20 +1,28 @@
-import Link from './Link';
+import Link from './Link.js';
 
-import { useRouter } from './context';
+import { useRouter } from './context.js';
 
+/**
+ * A navigational link for client-side routing.
+ *
+ * @typedef {Object} NavLinkProps
+ * @property {string} to - The path to link to.
+ * @property {boolean} exact - Does the path match exactly.
+ * @param {NavLinkProps & React.HTMLAttributes<HTMLAnchorElement>} props
+ */
 export default function NavLink(props) {
-  const { to, exact, ...rest } = props;
+  const { exact, ...rest } = props;
 
   // @ts-ignore
   const { matcher } = useRouter();
 
-  let activeProps;
+  let activeProps = {};
 
-  const matches = !!matcher?.(to, { end: exact });
+  const matches = !!matcher?.(props.to, { end: exact });
 
   if (matches) {
     activeProps = { 'data-active': true, 'aria-current': 'page' };
   }
 
-  return <Link {...rest} {...activeProps} to={to} />;
+  return <Link {...activeProps} {...rest} />;
 }

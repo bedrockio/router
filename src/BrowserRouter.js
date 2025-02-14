@@ -1,7 +1,14 @@
 import { useState, useEffect, useMemo } from 'react';
 
-import { RouterContext } from './context';
+import { RouterContext } from './context.js';
 
+/**
+ * Browser router using history API.
+ *
+ * @typedef {Object} BrowserRouterProps
+ * @property {React.ReactElement} children
+ * @param {BrowserRouterProps} props
+ */
 export default function BrowserRouter(props) {
   const [location, setLocation] = useState(() => {
     return { ...window.location };

@@ -1,4 +1,4 @@
-import { useRouter } from './context';
+import { useRouter } from './context.js';
 
 export function useLocation() {
   // @ts-ignore
