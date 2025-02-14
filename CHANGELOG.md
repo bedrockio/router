@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Basic scroll restoration
+
 ## 0.1.0
 
 - Basic routing
