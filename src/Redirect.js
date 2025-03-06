@@ -14,7 +14,9 @@ export default function Redirect(props) {
   const { replace } = useNavigate();
 
   useEffect(() => {
-    replace(to);
+    queueMicrotask(() => {
+      replace(to);
+    });
   }, []);
 
   return null;
