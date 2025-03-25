@@ -1,6 +1,6 @@
 import { useRouter } from './context.js';
 
-export function useSearch() {
+export default function useSearch() {
   // @ts-ignore
   return useRouter().search;
 }

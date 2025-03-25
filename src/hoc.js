@@ -1,5 +1,5 @@
 import history from './history.js';
-import { useLocation } from './location.js';
+import useLocation from './useLocation.js';
 
 export function withRouter(Component) {
   function push(path, state) {

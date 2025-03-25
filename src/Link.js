@@ -1,4 +1,4 @@
-import { useNavigate } from './navigate.js';
+import useNavigate from './useNavigate.js';
 
 /**
  * A link for client-side routing.

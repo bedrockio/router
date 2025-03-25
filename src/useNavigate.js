@@ -10,6 +10,6 @@ function replace(path, state) {
 
 navigate.replace = replace;
 
-export function useNavigate() {
+export default function useNavigate() {
   return navigate;
 }

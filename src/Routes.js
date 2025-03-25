@@ -10,7 +10,7 @@ import { match } from 'path-to-regexp';
 
 const OPTIONAL_REG = /\/:(\w+)\?/g;
 
-import { useLocation } from './location.js';
+import useLocation from './useLocation.js';
 import { RouterContext } from './context.js';
 
 /**
@@ -57,6 +57,7 @@ export default function Routes(props) {
 
       return {
         node,
+        path,
         matcher,
       };
     });
@@ -68,10 +69,10 @@ export default function Routes(props) {
     return null;
   }
 
-  const { node, params, matcher } = route;
+  const { node } = route;
 
   return (
-    <RouterContext.Provider value={{ ...parent, params, matcher }}>
+    <RouterContext.Provider value={{ ...parent, current: route }}>
       {cloneElement(node, {
         children: getElementForNode(node),
       })}
@@ -85,10 +86,8 @@ function matchRoute(routes, location) {
     const match = route.matcher(pathname, hostname);
     if (match) {
       return {
-        node: route.node,
+        ...route,
         params: match.params,
-        element: route.element,
-        matcher: route.matcher,
       };
     }
   }
@@ -104,11 +103,12 @@ function getSubdomainMatcher(subdomain) {
 }
 
 function getElementForNode(node) {
-  const { render } = node.props;
-  if (isValidElement(render)) {
-    return render;
-  } else if (render) {
-    const Component = render;
+  const { render, children } = node.props;
+  const content = render || children;
+  if (isValidElement(content)) {
+    return content;
+  } else if (content) {
+    const Component = content;
     return <Component />;
   }
 }

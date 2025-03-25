@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useNavigate } from './navigate.js';
+import useNavigate from './useNavigate.js';
 
 /**
  * A route to resolve a component based on location.

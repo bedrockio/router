@@ -1,6 +1,6 @@
 import Link from './Link.js';
 
-import { useRouter } from './context.js';
+import useLocation from './useLocation.js';
 
 /**
  * A navigational link for client-side routing.
@@ -12,13 +12,17 @@ import { useRouter } from './context.js';
  */
 export default function NavLink(props) {
   const { exact, ...rest } = props;
+  const { to } = props;
 
-  // @ts-ignore
-  const { matcher } = useRouter();
+  const { pathname } = useLocation();
 
   let activeProps = {};
 
-  const matches = !!matcher?.(props.to, { end: exact });
+  let matches = pathname === to;
+
+  if (!matches && !exact && pathname.startsWith(to)) {
+    matches = pathname.replace(to, '').startsWith('/');
+  }
 
   if (matches) {
     activeProps = { 'data-active': true, 'aria-current': 'page' };

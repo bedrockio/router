@@ -14,7 +14,7 @@ function wrapFunction(history, name) {
     window.dispatchEvent(
       new CustomEvent(event, {
         detail: state,
-      })
+      }),
     );
     return ret;
   };

@@ -12,10 +12,10 @@ export { default as Link } from './Link.js';
 export { default as NavLink } from './NavLink.js';
 
 // Hooks
-export * from './location.js';
-export * from './navigate.js';
-export * from './params.js';
-export * from './search.js';
+export { default as useLocation } from './useLocation.js';
+export { default as useNavigate } from './useNavigate.js';
+export { default as useParams } from './useParams.js';
+export { default as useSearch } from './useSearch.js';
 
 // Utils
-export * from './hoc.js';
+export { withRouter } from './hoc.js';
