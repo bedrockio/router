@@ -10,3 +10,8 @@ export async function navigate(path) {
     window.dispatchEvent(new PopStateEvent('popstate'));
   });
 }
+
+export async function assertText(page, text) {
+  const el = await page.getByText(text);
+  expect(el).toBeInTheDocument();
+}
