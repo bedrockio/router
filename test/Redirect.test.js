@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { setLocation, navigate } from './utils';
-import { BrowserRouter, Routes, Route, Redirect } from '../src';
+import { BrowserRouter, Routes, Route, Redirect, useParams } from '../src';
 import { assertText } from './utils';
 
 describe('Redirect', () => {
@@ -78,5 +78,29 @@ describe('Redirect', () => {
     await navigate('/shop/foo');
     expect(location.pathname).toBe('/shop/bar');
     await assertText(page, 'Shop Detail');
+  });
+
+  it('should perform redirect with params', async () => {
+    setLocation('/');
+
+    function Edit() {
+      const { id } = useParams();
+      return <div>Edit {id}</div>;
+    }
+
+    const page = render(
+      <BrowserRouter>
+        <Routes>
+          <Route path="/products/:id/edit" render={Edit} exact />
+          <Redirect path="/products/:id" to="/products/:id/edit" />
+        </Routes>
+      </BrowserRouter>,
+    );
+
+    await navigate('/products/1234/edit');
+    await assertText(page, 'Edit 1234');
+
+    await navigate('/products/5678');
+    await assertText(page, 'Edit 5678');
   });
 });

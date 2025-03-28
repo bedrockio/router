@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
+import { compile } from 'path-to-regexp';
 
 import useNavigate from './useNavigate.js';
+import useParams from './useParams.js';
 
 /**
  * A route to resolve a component based on location.
@@ -13,9 +15,12 @@ export default function Redirect(props) {
   const { to } = props;
   const { replace } = useNavigate();
 
+  const params = useParams();
+
   useEffect(() => {
     queueMicrotask(() => {
-      replace(to);
+      const toPath = compile(to);
+      replace(toPath(params));
     });
   }, []);
 
