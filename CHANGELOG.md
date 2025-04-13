@@ -1,3 +1,7 @@
+## 0.2.2
+
+- Ensure that useLocation contains latest history state.
+
 ## 0.2.1
 
 - Support redirect with params.

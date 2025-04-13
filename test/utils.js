@@ -1,12 +1,12 @@
 import { act } from '@testing-library/react';
 
-export function setLocation(path) {
-  window.history.pushState({}, '', path);
+export function setLocation(path, state = {}) {
+  window.history.pushState(state, '', path);
 }
 
-export async function navigate(path) {
+export async function navigate(path, state) {
   await act(async () => {
-    setLocation(path);
+    setLocation(path, state);
     window.dispatchEvent(new PopStateEvent('popstate'));
   });
 }

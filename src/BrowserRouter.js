@@ -10,13 +10,11 @@ import { RouterContext } from './context.js';
  * @param {BrowserRouterProps} props
  */
 export default function BrowserRouter(props) {
-  const [location, setLocation] = useState(() => {
-    return { ...window.location };
-  });
+  const [location, setLocation] = useState(getLocation);
 
   useEffect(() => {
     const updateLocation = () => {
-      setLocation({ ...window.location });
+      setLocation(getLocation);
     };
 
     window.addEventListener('popstate', updateLocation);
@@ -33,6 +31,13 @@ export default function BrowserRouter(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
+  function getLocation() {
+    return {
+      ...window.location,
+      state: window.history.state,
+    };
+  }
 
   const search = useMemo(() => {
     const params = new URLSearchParams(location.search);
