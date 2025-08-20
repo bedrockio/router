@@ -1,3 +1,8 @@
+## 0.2.4
+
+- Mapped history `back`, `forward` and `go` onto `useNavigate`.
+- Documented navigation functions.
+
 ## 0.2.3
 
 - Update peer deps.
