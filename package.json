@@ -1,6 +1,6 @@
 {
   "name": "@bedrockio/router",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A simpler browser router.",
   "type": "module",
   "scripts": {
