@@ -1,3 +1,7 @@
+## 0.2.3
+
+- Update peer deps.
+
 ## 0.2.2
 
 - Ensure that useLocation contains latest history state.
