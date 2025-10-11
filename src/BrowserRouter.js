@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useLayoutEffect, useMemo } from 'react';
 
 import { RouterContext } from './context.js';
 
@@ -12,7 +12,9 @@ import { RouterContext } from './context.js';
 export default function BrowserRouter(props) {
   const [location, setLocation] = useState(getLocation);
 
-  useEffect(() => {
+  // Using layout effect here so that the router can be
+  // ready for navigation when child routes are mounted.
+  useLayoutEffect(() => {
     const updateLocation = () => {
       setLocation(getLocation);
     };

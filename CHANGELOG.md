@@ -1,3 +1,8 @@
+## 0.2.5
+
+- Ensure BrowserRouter mounts first.
+- Allow an empty string to remove query params in `useNavigate`.
+
 ## 0.2.4
 
 - Mapped history `back`, `forward` and `go` onto `useNavigate`.

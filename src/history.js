@@ -8,9 +8,11 @@ function wrapFunction(history, name) {
   const native = history[name];
   const event = name.toLowerCase();
 
-  history[name] = function (...args) {
-    const ret = native.apply(this, args);
-    const [state] = args;
+  history[name] = function (state, unused, url) {
+    // Allow an empty string to remove query params.
+    url ||= location.pathname;
+
+    const ret = native.call(this, state, unused, url);
     window.dispatchEvent(
       new CustomEvent(event, {
         detail: state,
