@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { compile } from 'path-to-regexp';
+import { useEffect } from 'react';
 
 import useNavigate from './useNavigate.js';
 import useParams from './useParams.js';

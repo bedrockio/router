@@ -1,17 +1,17 @@
-import {
-  useMemo,
-  useContext,
-  cloneElement,
-  isValidElement,
-  Children,
-} from 'react';
-
 import { match } from 'path-to-regexp';
 
-const OPTIONAL_REG = /\/:(\w+)\?/g;
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useContext,
+  useMemo,
+} from 'react';
 
-import useLocation from './useLocation.js';
 import { RouterContext } from './context.js';
+import useLocation from './useLocation.js';
+
+const OPTIONAL_REG = /\/:(\w+)\?/g;
 
 /**
  * A route to resolve a component based on location.

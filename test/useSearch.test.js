@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
 
-import { setLocation, navigate } from './utils';
-import { BrowserRouter, Routes, Route, useSearch } from '../src';
+import { navigate, setLocation } from './utils';
+import { BrowserRouter, Route, Routes, useSearch } from '../src';
 
 describe('useParams', () => {
   it('should correctly match loose NavLink', async () => {

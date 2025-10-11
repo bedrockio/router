@@ -1,10 +1,9 @@
+import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { useEffect } from 'react';
 
 import { setLocation } from './utils';
-import '@testing-library/jest-dom';
-
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from '../src';
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from '../src';
 
 describe('useNavigate', () => {
   it('should set the query string', async () => {

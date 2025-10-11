@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
 
-import { setLocation, navigate } from './utils';
-import { BrowserRouter, Routes, Route } from '../src';
+import { navigate, setLocation } from './utils';
+import { BrowserRouter, Route, Routes } from '../src';
 
 describe('BrowserRouter', () => {
   it('should render the router', async () => {

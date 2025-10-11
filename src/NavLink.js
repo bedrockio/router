@@ -1,5 +1,4 @@
 import Link from './Link.js';
-
 import useLocation from './useLocation.js';
 
 /**
