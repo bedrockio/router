@@ -12,12 +12,8 @@ describe('useNavigate', () => {
       const location = useLocation();
 
       useEffect(() => {
-        run();
-      }, []);
-
-      async function run() {
         navigate('?foo=bar');
-      }
+      }, []);
 
       return <div role="url">{location.search}</div>;
     }
@@ -42,12 +38,8 @@ describe('useNavigate', () => {
       const location = useLocation();
 
       useEffect(() => {
-        run();
-      }, []);
-
-      async function run() {
         navigate('');
-      }
+      }, []);
 
       return <div role="url">{location.search}</div>;
     }

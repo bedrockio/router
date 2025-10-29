@@ -5,7 +5,7 @@ import { navigate, setLocation } from './utils';
 import { BrowserRouter, Route, Routes, useParams } from '../src';
 
 describe('useParams', () => {
-  it('should correctly match loose NavLink', async () => {
+  it('should correctly get URL params', async () => {
     setLocation('/shops/1');
 
     function Detail() {

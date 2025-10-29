@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 
 import { RouterContext } from './context.js';
+import useNavigate from './useNavigate.js';
 
 /**
  * Browser router using history API.
@@ -11,6 +12,8 @@ import { RouterContext } from './context.js';
  */
 export default function BrowserRouter(props) {
   const [location, setLocation] = useState(getLocation);
+
+  const navigate = useNavigate();
 
   // Using layout effect here so that the router can be
   // ready for navigation when child routes are mounted.
@@ -43,7 +46,19 @@ export default function BrowserRouter(props) {
 
   const search = useMemo(() => {
     const params = new URLSearchParams(location.search);
-    return Object.fromEntries(params);
+    return {
+      get(name) {
+        return params.get(name);
+      },
+      set(name, value) {
+        params.set(name, value);
+        if (params.size) {
+          navigate(`?${params.toString()}`);
+        } else {
+          navigate('');
+        }
+      },
+    };
   }, [location]);
 
   return (
