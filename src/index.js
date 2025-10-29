@@ -15,7 +15,7 @@ export { default as NavLink } from './NavLink.js';
 export { default as useLocation } from './useLocation.js';
 export { default as useNavigate } from './useNavigate.js';
 export { default as useParams } from './useParams.js';
-export { default as useSearch } from './useSearch.js';
+export { default as useQuery } from './useQuery.js';
 
 // Utils
 export { withRouter } from './hoc.js';

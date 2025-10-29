@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 
+import QueryParams from './QueryParams.js';
 import { RouterContext } from './context.js';
 import useNavigate from './useNavigate.js';
 
@@ -44,25 +45,21 @@ export default function BrowserRouter(props) {
     };
   }
 
-  const search = useMemo(() => {
-    const params = new URLSearchParams(location.search);
-    return {
-      get(name) {
-        return params.get(name);
-      },
-      set(name, value) {
-        params.set(name, value);
+  const query = useMemo(() => {
+    return new QueryParams({
+      location,
+      onChange(params) {
         if (params.size) {
           navigate(`?${params.toString()}`);
         } else {
           navigate('');
         }
       },
-    };
+    });
   }, [location]);
 
   return (
-    <RouterContext.Provider value={{ location, search }}>
+    <RouterContext.Provider value={{ location, query }}>
       {props.children}
     </RouterContext.Provider>
   );

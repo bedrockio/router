@@ -18,7 +18,7 @@ A simplified browser router for React applications.
   - [useNavigate](#usenavigate)
   - [useLocation](#uselocation)
   - [useParams](#useparams)
-  - [useSearch](#usesearch)
+  - [useQuery](#usequery)
 - [Differences from React Router](#differences-from-react-router)
 
 ## Install
@@ -47,7 +47,7 @@ Key features:
 - Simple, flat routing structure
 - Flexible `render` prop that accepts components or elements
 - Built-in hooks for common routing needs
-- Convenient `useSearch` hook for query parameters
+- Convenient `useQuery` hook for query parameters
 - Support for both browser and static (SSR/SSG) routing
 
 ## Usage
@@ -303,30 +303,62 @@ function UserProfile() {
 // Usage: <Route path="/users/:id" render={UserProfile} />
 ```
 
-### useSearch
+### useQuery
 
-Returns query parameters as an object.
+Returns an object representing the query parameters of the URL. This object is
+like `URLSearchParams` with a few enhancements. First parameters may be accessed
+with the `get` method or directly via properties.
 
 ```jsx
-import { useSearch } from '@bedrockio/router';
+import { useQuery } from '@bedrockio/router';
 
 function SearchResults() {
-  const search = useSearch();
+  const query = useQuery();
 
   return (
     <div>
-      Query: {search.q}
-      Page: {search.page}
+      Page: {query.page}
+      Page: {query.get('page')}
     </div>
   );
 }
 
-// URL: /search?q=react&page=2
-// search = { q: 'react', page: '2' }
+// URL: /search?page=2
 ```
 
-This hook fills a gap in standard routing libraries by providing a simple way to
-access query parameters without manual parsing.
+Additionally the query object will perform navigation with the `set`, `delete`,
+and `clear` methods:
+
+```jsx
+import { useQuery } from '@bedrockio/router';
+
+function SearchResults() {
+  const query = useQuery();
+
+  function onTwoClick() {
+    query.set('page', '2');
+    // Navigates to /search?page=2
+  }
+
+  function onNoPageClick() {
+    query.delete('page');
+    // Navigates to /search
+  }
+
+  function onResetClick() {
+    query.clear();
+    // Navigates to /search
+  }
+
+  return (
+    <>
+      <div onClick={onTwoClick}>Two</div>
+      <div onClick={onNoPageClick}>No Page</div>
+      <div onClick={onResetClick}>Reset</div>
+    </>
+  );
+}
+```
 
 ## Differences from React Router
 
@@ -335,6 +367,6 @@ This router is designed to be simpler and more streamlined:
 - **No nested routers** - Routes are flat, no `<Outlet />` component
 - **Simpler Route API** - Single `render` prop accepts components, elements, or
   functions
-- **Built-in useSearch** - Query parameters as an object without manual parsing
+- **Built-in useQuery** - Query parameters as an object without manual parsing
 - **Fewer concepts** - No loaders, actions, or data routers
 - **Lightweight** - Smaller bundle size with focused feature set

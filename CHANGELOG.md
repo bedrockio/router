@@ -1,11 +1,14 @@
+## 0.3.0
+
+- `useSearch` -> `useQuery`.
+- Query object allows `set` or proxied properties.
+- Query object can `set`, `append`, `delete`, or `clear` which will cause
+  navigation.
+
 ## 0.2.5
 
 - Ensure BrowserRouter mounts first.
 - Allow an empty string to remove query params in `useNavigate`.
-
-## Next
-
-- Allow setting of query string.
 
 ## 0.2.4
 
