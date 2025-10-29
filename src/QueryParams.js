@@ -12,6 +12,21 @@ export default class QueryParams {
           return this[prop];
         }
       },
+
+      // Enumerate param keys for spread operators.
+      ownKeys(target) {
+        return [...target.params.keys()];
+      },
+
+      getOwnPropertyDescriptor(target, prop) {
+        if (typeof prop === 'string' && target.params.has(prop)) {
+          return {
+            enumerable: true,
+            configurable: true,
+            value: target.params.get(prop),
+          };
+        }
+      },
     });
   }
 

@@ -1,3 +1,7 @@
+## 0.3.1
+
+- Fix for spreading query params.
+
 ## 0.3.0
 
 - `useSearch` -> `useQuery`.
