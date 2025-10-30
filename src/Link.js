@@ -12,9 +12,18 @@ export default function Link(props) {
 
   const navigate = useNavigate();
 
+  function isModifiedEvent(evt) {
+    if (evt.button !== 0) {
+      return false;
+    }
+    return evt.altKey || evt.ctrlKey || evt.metaKey || evt.shiftKey;
+  }
+
   function onClick(evt) {
-    evt.preventDefault();
-    navigate(to);
+    if (!isModifiedEvent(evt)) {
+      evt.preventDefault();
+      navigate(to);
+    }
   }
 
   return <a {...rest} href={to} onClick={onClick} />;

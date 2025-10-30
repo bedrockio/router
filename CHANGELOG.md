@@ -1,3 +1,7 @@
+## 0.3.2
+
+- Fix for meta keys on link clicks.
+
 ## 0.3.1
 
 - Fix for spreading query params.
