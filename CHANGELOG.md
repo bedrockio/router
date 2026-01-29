@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Capture and retrieve redirect URL.
+
 ## 0.3.2
 
 - Fix for meta keys on link clicks.

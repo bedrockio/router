@@ -1,7 +1,17 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
-import { BrowserRouter, Redirect, Route, Routes, useParams } from '../src';
+import {
+  BrowserRouter,
+  Redirect,
+  Route,
+  Routes,
+  clearRedirectUrl,
+  getRedirectUrl,
+  popRedirectUrl,
+  useParams,
+} from '../src';
+
 import { navigate, setLocation } from './utils';
 import { assertText } from './utils';
 
@@ -102,5 +112,101 @@ describe('Redirect', () => {
 
     await navigate('/products/5678');
     await assertText(page, 'Edit 5678');
+  });
+
+  describe('capturing redirect', () => {
+    it('should capture redirect', async () => {
+      setLocation('/');
+
+      render(
+        <BrowserRouter>
+          <Routes>
+            <Redirect path="/products/:id" to="/login" capture />
+          </Routes>
+        </BrowserRouter>,
+      );
+
+      await navigate('/products/1234/edit');
+      expect(location.pathname).toBe('/login');
+      expect(localStorage.getItem('redirectUrl')).toBe('/products/1234/edit');
+
+      clearRedirectUrl();
+    });
+
+    it('should capture redirect with custom key', async () => {
+      setLocation('/');
+
+      render(
+        <BrowserRouter>
+          <Routes>
+            <Redirect path="/products/:id" to="/login" capture="mySpecialKey" />
+          </Routes>
+        </BrowserRouter>,
+      );
+
+      await navigate('/products/1234/edit');
+      expect(location.pathname).toBe('/login');
+      expect(localStorage.getItem('mySpecialKey')).toBe('/products/1234/edit');
+
+      clearRedirectUrl('mySpecialKey');
+    });
+
+    it('should capture query params and hash as well', async () => {
+      setLocation('/');
+
+      render(
+        <BrowserRouter>
+          <Routes>
+            <Redirect path="/products/:id" to="/login" capture="mySpecialKey" />
+          </Routes>
+        </BrowserRouter>,
+      );
+
+      await navigate('/products/1234/edit?foo=bar#baz');
+      expect(location.pathname).toBe('/login');
+      expect(localStorage.getItem('mySpecialKey')).toBe(
+        '/products/1234/edit?foo=bar#baz',
+      );
+
+      clearRedirectUrl('mySpecialKey');
+    });
+
+    it('should not overwrite a stored redirect', async () => {
+      setLocation('/');
+
+      render(
+        <BrowserRouter>
+          <Routes>
+            <Redirect path="/products/:id" to="/login" capture />
+          </Routes>
+        </BrowserRouter>,
+      );
+
+      await navigate('/products/1234/foo');
+      await navigate('/products/1234/bar');
+      expect(location.pathname).toBe('/login');
+      expect(localStorage.getItem('redirectUrl')).toBe('/products/1234/foo');
+
+      clearRedirectUrl();
+    });
+
+    it('should be able to retrieve redirect', async () => {
+      setLocation('/');
+
+      render(
+        <BrowserRouter>
+          <Routes>
+            <Redirect path="/products/:id" to="/login" capture />
+          </Routes>
+        </BrowserRouter>,
+      );
+
+      await navigate('/products/1234/foo');
+      expect(localStorage.getItem('redirectUrl')).toBe('/products/1234/foo');
+      expect(getRedirectUrl()).toBe('/products/1234/foo');
+      expect(localStorage.getItem('redirectUrl')).toBe('/products/1234/foo');
+      expect(popRedirectUrl()).toBe('/products/1234/foo');
+      expect(localStorage.getItem('redirectUrl')).toBe(null);
+    });
   });
 });

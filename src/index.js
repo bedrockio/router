@@ -5,7 +5,12 @@ export { default as BrowserRouter } from './BrowserRouter.js';
 // Routing
 export { default as Route } from './Route.js';
 export { default as Routes } from './Routes.js';
-export { default as Redirect } from './Redirect.js';
+export {
+  clearRedirectUrl,
+  default as Redirect,
+  getRedirectUrl,
+  popRedirectUrl,
+} from './Redirect.js';
 
 // Components
 export { default as Link } from './Link.js';
