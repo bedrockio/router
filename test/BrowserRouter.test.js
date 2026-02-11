@@ -90,4 +90,14 @@ describe('BrowserRouter', () => {
     div = await page.getByText('Shop 1');
     expect(div).toBeInTheDocument();
   });
+
+  it('should throw error when context not provided', async () => {
+    expect(() => {
+      render(
+        <Routes>
+          <Route path="*" render={<div>Splat</div>} />
+        </Routes>,
+      );
+    }).toThrow('No context provided. You might need to add <BrowserRouter>.');
+  });
 });

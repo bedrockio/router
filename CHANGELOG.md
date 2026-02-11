@@ -1,3 +1,7 @@
+## 0.4.1
+
+- Throw error when context not provided.
+
 ## 0.4.0
 
 - Capture and retrieve redirect URL.

@@ -1,7 +1,15 @@
 import { createContext, useContext } from 'react';
 
-export const RouterContext = createContext({});
+export const RouterContext = createContext(null);
 
 export function useRouter() {
-  return useContext(RouterContext);
+  const context = useContext(RouterContext);
+
+  if (!context) {
+    throw new Error(
+      'No context provided. You might need to add <BrowserRouter>.',
+    );
+  }
+
+  return context;
 }
