@@ -5,6 +5,7 @@ import useNavigate from './useNavigate.js';
  *
  * @typedef {Object} LinkProps
  * @property {string} to - The path to link to.
+ * @property {Function} [onClick] - An additional onClick handler
  * @param {LinkProps & React.HTMLAttributes<HTMLAnchorElement>} props
  */
 export default function Link(props) {
@@ -24,6 +25,7 @@ export default function Link(props) {
       evt.preventDefault();
       navigate(to);
     }
+    props.onClick?.(evt);
   }
 
   return <a {...rest} href={to} onClick={onClick} />;

@@ -1,3 +1,7 @@
+## 0.4.2
+
+- Pass `onClick` handler through.
+
 ## 0.4.1
 
 - Throw error when context not provided.
