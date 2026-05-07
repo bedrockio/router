@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.esm.json",
     "lint": "eslint",
     "eject": "scripts/eject",
     "prepublish": "yarn build"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "contributors": [
     {
       "name": "Andrew Plummer",

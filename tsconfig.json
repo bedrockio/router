@@ -3,15 +3,16 @@
     "./src/index.js"
   ],
   "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
     "jsx": "react-jsx",
     "target": "esnext",
     "module": "nodenext",
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
     "declaration": true,
     "skipLibCheck": false,
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "outDir": "dist",
   },
 }
