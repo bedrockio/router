@@ -24,7 +24,10 @@ export default function NavLink(props) {
   }
 
   if (matches) {
-    activeProps = { 'data-active': true, 'aria-current': 'page' };
+    activeProps = {
+      'data-active': '',
+      'aria-current': 'page',
+    };
   }
 
   return <Link {...activeProps} {...rest} />;

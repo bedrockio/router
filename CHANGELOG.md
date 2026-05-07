@@ -1,3 +1,7 @@
+## 0.4.3
+
+- `data-active` to boolean attr.
+
 ## 0.4.2
 
 - Pass `onClick` handler through.
