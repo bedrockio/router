@@ -8,11 +8,11 @@
     "jsx": "react-jsx",
     "target": "esnext",
     "module": "nodenext",
+    "strict": false,
     "allowJs": true,
     "checkJs": false,
     "declaration": true,
     "skipLibCheck": false,
-    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
   },
 }

@@ -5,28 +5,58 @@ import useNavigate from './useNavigate.js';
  *
  * @typedef {Object} LinkProps
  * @property {string} to - The path to link to.
+ * @property {boolean} [back] - Attempt to navigate back with navigation.back.
  * @property {Function} [onClick] - An additional onClick handler
  * @param {LinkProps & React.HTMLAttributes<HTMLAnchorElement>} props
  */
 export default function Link(props) {
-  const { to, ...rest } = props;
+  const { to, back, ...rest } = props;
 
   const navigate = useNavigate();
 
   function isModifiedEvent(evt) {
-    if (evt.button !== 0) {
-      return false;
-    }
     return evt.altKey || evt.ctrlKey || evt.metaKey || evt.shiftKey;
+  }
+
+  function canGoBack() {
+    return back && navigation.canGoBack;
+  }
+
+  function getHref() {
+    let href;
+    if (canGoBack()) {
+      href = getPreviousHref();
+    } else {
+      href = to;
+    }
+
+    return href;
+  }
+
+  function getPreviousHref() {
+    const { index } = navigation.currentEntry;
+    const { url } = navigation.entries()[index - 1];
+
+    if (url) {
+      const { pathname, search, hash } = new URL(url);
+      return pathname + search + hash;
+    } else {
+      return to;
+    }
   }
 
   function onClick(evt) {
     if (!isModifiedEvent(evt)) {
       evt.preventDefault();
-      navigate(to);
+
+      if (canGoBack()) {
+        navigation.back();
+      } else {
+        navigate(to);
+      }
     }
     props.onClick?.(evt);
   }
 
-  return <a {...rest} href={to} onClick={onClick} />;
+  return <a {...rest} href={getHref()} onClick={onClick} />;
 }

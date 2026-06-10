@@ -1,3 +1,7 @@
+## 0.5.0
+
+- Allow `back` prop in link with fallback.
+
 ## 0.4.3
 
 - `data-active` to boolean attr.

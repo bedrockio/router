@@ -11,7 +11,7 @@
     "prepublish": "yarn build"
   },
   "main": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "types": "./dist/esm/types/index.d.ts",
   "contributors": [
     {
       "name": "Andrew Plummer",
@@ -47,7 +47,7 @@
     "prettier": "^3.6.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "prettier": "@bedrockio/prettier-config",
   "volta": {
